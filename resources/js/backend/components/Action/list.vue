@@ -1,135 +1,111 @@
 <template>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header" style="background-color: rgb(0,0,0,0.1);">
-                    <h3 class="card-title">LIST ACTION</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                          <i class="fas fa-times"></i>
-                        </button> -->
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row" style="display: flex; flex-wrap: nowrap; padding: 8px; justify-content: space-between">
-                                <el-input
-                                    style="width: 500px"
-                                    v-model="textSearch"
-                                    placeholder="Nhập kí tự cần tìm kiếm..."
-                                    @keyup.enter.native="getList()"
-                                >
-                                    <template v-slot:append>
-                                        <el-button type="primary" @click="getList()"><i class="el-icon-search"></i> Tìm
-                                            kiếm
-                                        </el-button>
-
-                                    </template>
-                                </el-input>
-                                <el-button @click="outerVisible=true; idUpdate=''" class="ml-2" type="primary"><i
-                                    class="el-icon-plus"></i> Thêm mới
-                                </el-button>
-                            </div>
-                            <el-table
-                                empty-text="Chưa có dữ liệu !"
-                                :data="tableData"
-                                style="width: 100%"
-                                border
-                                :resizable="true"
-                                v-loading="loadingTable"
-                                :row-class-name="tableRowClassName">
-
-                                <el-table-column
-                                    prop="code"
-                                    label="MÃ ACTION"
-                                    sortable
-                                >
-                                </el-table-column>
-
-                              
-                                <el-table-column
-                                    prop="name"
-                                    label="TÊN ACTION"
-                                    sortable
-                                >
-                                </el-table-column>
-
-                                <el-table-column
-                                    prop="type"
-                                    label="LOẠI ACTION"
-                                >
-                                </el-table-column>
-
-                                <el-table-column
-                                    prop="created_at"
-                                    label="NGÀY TẠO"
-                                    width="150"
-                                >
-                                    <template slot-scope="scope">
-                                        {{ scope.row.created_at | formatDate}}
-                                    </template>
-                                </el-table-column>                                
-                                <el-table-column
-                                    label="THAO TÁC"
-                                    width="180"
-                                >
-                                    <template slot-scope="scope">
-                                        <el-button
-                                            size="mini"
-                                            @click="update(scope.row)">Cập
-                                            nhật
-                                        </el-button>
-                                        <!-- <el-button
-                                          size="mini"
-                                          type="danger"
-                                          @click="delete(scope.row.id)">Xóa</el-button> -->
-                                        <el-popconfirm
-                                            confirm-button-text='Xóa'
-                                            cancel-button-text='Không'
-                                            :title="'Bạn có chắc chắn muốn xóa hình ảnh này ?'"
-                                            @confirm="()=>deleteBanner(scope.row.id)"
-                                        >
-                                            <el-button slot="reference" type="danger"
-                                                       size="mini"><i class="el-icon-delete"></i> Xóa
-                                            </el-button>
-                                        </el-popconfirm>
-                                    </template>
-                                </el-table-column>
-                                <template slot="empty">
-                                    <el-empty description="No data"></el-empty>
-                                </template>
-                            </el-table>
-                        </div>
-                        <div class="block" style="margin-left: 0px;margin-right: 8px;padding: 10px;width: 100%">
-                            <el-pagination
-                                @size-change="handleSizeChange"
-                                @current-change="handleCurrentChange"
-                                :current-page.sync="currentPage"
-                                :page-sizes="[10, 20, 50, 100]"
-                                :page-size="options.PageLimit"
-                                layout="total, sizes, prev, pager, next, jumper"
-                                :total="options.Total">
-                            </el-pagination>
-                        </div>
-                        <!-- /.col -->
-
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-
+    <div class="inner-body">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h2 class="main-content-title tx-24 mg-b-5">LIST ACTION</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">ListAction</li>
+                </ol>
+            </div>
+            <div class="d-flex">
+                <div class="justify-content-center">
+                    <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
+                        <i class="fe fe-download me-2"></i> Import
+                    </button>
+                    <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
+                        <i class="fe fe-filter me-2"></i> Filter
+                    </button>
+                    <!-- <button type="button" class="btn btn-primary my-2 btn-icon-text">
+                        <i class="fe fe-download-cloud me-2"></i> Download Report
+                    </button> -->
+                    <button  @click="outerVisible = true; idUpdate = ''" class="btn btn-primary my-2 btn-icon-text"
+                        type="button"><i class="el-icon-plus"></i> Thêm mới
+                    </button>
                 </div>
             </div>
         </div>
-        <el-dialog :visible.sync="outerVisible">
-            <formData :resID="idUpdate" :triggerLoad="triggerLoad" @success="success"/>
-        </el-dialog>
+        <!-- End Page Header -->
+        <!-- Row -->
+        <div class="row row-sm">
+            <div class="col-lg-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row"
+                                    style="display: flex; flex-wrap: nowrap; padding: 8px; justify-content: space-between">
+                                    <el-input style="width: 500px" v-model="textSearch"
+                                        placeholder="Nhập kí tự cần tìm kiếm..." @keyup.enter.native="getList()">
+                                        <template v-slot:append>
+                                            <el-button type="primary" @click="getList()"><i class="el-icon-search"></i>
+                                                Tìm
+                                                kiếm
+                                            </el-button>
+
+                                        </template>
+                                    </el-input>                                   
+                                </div>
+                                <el-table empty-text="Chưa có dữ liệu !" :data="tableData" style="width: 100%" border
+                                    :resizable="true" v-loading="loadingTable" :row-class-name="tableRowClassName">
+
+                                    <el-table-column prop="code" label="MÃ ACTION" sortable>
+                                    </el-table-column>
+
+
+                                    <el-table-column prop="name" label="TÊN ACTION" sortable>
+                                    </el-table-column>
+
+                                    <el-table-column prop="type" label="LOẠI ACTION">
+                                    </el-table-column>
+
+                                    <el-table-column prop="created_at" label="NGÀY TẠO" width="150">
+                                        <template slot-scope="scope">
+                                            {{ scope.row.created_at | formatDate }}
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="THAO TÁC" width="180">
+                                        <template slot-scope="scope">
+                                            <el-button size="mini" @click="update(scope.row)">Cập
+                                                nhật
+                                            </el-button>
+                                            <!-- <el-button
+                                          size="mini"
+                                          type="danger"
+                                          @click="delete(scope.row.id)">Xóa</el-button> -->
+                                            <el-popconfirm confirm-button-text='Xóa' cancel-button-text='Không'
+                                                :title="'Bạn có chắc chắn muốn xóa hình ảnh này ?'"
+                                                @confirm="() => deleteBanner(scope.row.id)">
+                                                <el-button slot="reference" type="danger" size="mini"><i
+                                                        class="el-icon-delete"></i> Xóa
+                                                </el-button>
+                                            </el-popconfirm>
+                                        </template>
+                                    </el-table-column>
+                                    <template slot="empty">
+                                        <el-empty description="No data"></el-empty>
+                                    </template>
+                                </el-table>
+                            </div>
+                            <div class="block" style="margin-left: 0px;margin-right: 8px;padding: 10px;width: 100%">
+                                <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                                    :current-page.sync="currentPage" :page-sizes="[10, 20, 50, 100]"
+                                    :page-size="options.PageLimit" layout="total, sizes, prev, pager, next, jumper"
+                                    :total="options.Total">
+                                </el-pagination>
+                            </div>
+                            <!-- /.col -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <el-dialog :visible.sync="outerVisible">
+                <formData :resID="idUpdate" :triggerLoad="triggerLoad" @success="success" />
+            </el-dialog>
+        </div>
+        <!-- End Row -->
     </div>
 
 </template>
@@ -137,36 +113,36 @@
 <script>
 import formData from "./form";
 export default {
-    components:{formData},
+    components: { formData },
     data() {
         return {
-            idUpdate:'',
-            outerVisible:false,
-            loadingTable:false,
+            idUpdate: '',
+            outerVisible: false,
+            loadingTable: false,
             tableData: [],
             slideData: [],
             textSearch: '',
             currentPage: 1,
-            options:{
-                Total:10,
-                Page:1,
-                PageLimit:10
+            options: {
+                Total: 10,
+                Page: 1,
+                PageLimit: 10
             },
-            triggerLoad:new Date().getTime(),
+            triggerLoad: new Date().getTime(),
         }
     },
     mounted() {
         this.getList()
     },
     methods: {
-        success(){
-          this.outerVisible = false
-          this.getList()
+        success() {
+            this.outerVisible = false
+            this.getList()
         },
-        update(e){
+        update(e) {
             this.idUpdate = e.id
             this.triggerLoad = new Date().getTime()
-            this.outerVisible=true
+            this.outerVisible = true
         },
         handleSizeChange(val) {
             this.options.PageLimit = val
@@ -232,16 +208,16 @@ export default {
             let _this = this
             _this.loadingTable = true
             let param = {}
-            this.options.Page &&(param.Page = this.options.Page)
-            this.options.PageLimit &&(param.PageLimit = this.options.PageLimit)
+            this.options.Page && (param.Page = this.options.Page)
+            this.options.PageLimit && (param.PageLimit = this.options.PageLimit)
             this.textSearch && (param.TextSearch = this.textSearch)
-            this.$route.params.id_module &&  (param.moduleCode = this.$route.params.id_module)
+            this.$route.params.id_module && (param.moduleCode = this.$route.params.id_module)
             axios({
                 method: 'get',
                 url: '/api/admin/action',
                 params: param
             })
-                .then(function ({data}) {
+                .then(function ({ data }) {
                     if (data['success']) {
                         _this.tableData = data['data']
                         _this.options.Total = data['total']
@@ -252,7 +228,7 @@ export default {
         }, changeStatus(id) {
             alert(id)
         },
-        tableRowClassName({row, rowIndex}) {
+        tableRowClassName({ row, rowIndex }) {
             if (rowIndex === 1) {
                 return 'warning-row';
             } else if (rowIndex === 3) {
@@ -272,7 +248,8 @@ export default {
 .el-table .success-row {
     background: #f0f9eb;
 }
-.color-item{
+
+.color-item {
     height: 20px;
     width: 40px;
     border-radius: 6px;

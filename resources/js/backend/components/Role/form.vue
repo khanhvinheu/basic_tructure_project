@@ -1,53 +1,70 @@
 <template>
-    <div class="row">    
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header" style="background-color: rgb(0,0,0,0.1);">
-                    <h3 class="card-title">ROLE DETAIL</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>              
-                    </div>
+    <div class="inner-body">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h2 class="main-content-title tx-24 mg-b-5">FORM ROLE</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FormRole</li>
+                </ol>
+            </div>
+            <div class="d-flex">
+                <div class="justify-content-center">
+                    <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
+                        <i class="fe fe-download me-2"></i> Import
+                    </button>
+                    <button type="button" class="btn btn-white btn-icon-text my-2 me-2">
+                        <i class="fe fe-filter me-2"></i> Filter
+                    </button>
+                    <!-- <button type="button" class="btn btn-primary my-2 btn-icon-text">
+                        <i class="fe fe-download-cloud me-2"></i> Download Report
+                    </button> -->
+                    <button @click="$router.push({ name: 'RoleCreate' })" class="btn btn-primary my-2 btn-icon-text"
+                        type="button"><i class="el-icon-plus"></i> Thêm mới
+                    </button>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <el-form label-position="right" :model="formData" :rules="rules" ref="formData"
-                                     label-width="120px" class="demo-ruleForm">        
-                                <el-form-item label="Mã role" prop="code">
-                                    <div class="form-group">
-                                        <el-input :disabled="true" validate-event placeholder="Nhập tên danh mục"
-                                                    v-model="formData.code"></el-input>
-                                    </div>
-                                </el-form-item>                         
-                                <el-form-item label="Tên role" prop="name">
-                                    <div class="form-group">
-                                        <el-input validate-event placeholder="Nhập tên role"
-                                                  v-model="formData.name"></el-input>
-                                    </div>
-                                </el-form-item>    
+            </div>
+        </div>
+        <!-- End Page Header -->
+        <!-- Row -->
+        <div class="row row-sm">
+            <div class="col-lg-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <!-- /.card-header -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <el-form label-position="right" :model="formData" :rules="rules" ref="formData"
+                                    label-width="120px" class="demo-ruleForm">
+                                    <el-form-item label="Mã role" prop="code">
+                                        <div class="form-group">
+                                            <el-input :disabled="true" validate-event placeholder="Nhập tên danh mục"
+                                                v-model="formData.code"></el-input>
+                                        </div>
+                                    </el-form-item>
+                                    <el-form-item label="Tên role" prop="name">
+                                        <div class="form-group">
+                                            <el-input validate-event placeholder="Nhập tên role"
+                                                v-model="formData.name"></el-input>
+                                        </div>
+                                    </el-form-item>
 
-                                <el-form-item label="Role cha" prop="id_parent">
-                                    <div class="form-group">
-                                        <el-select style="width: 100%" v-model="formData.id_parent" size="large"
-                                                   filterable 
-                                                   placeholder="Chọn role cha">
-                                            <el-option
-                                                v-for="item in listCategoryParent"
-                                                :key="item.id"
-                                                :label="item.code + ' | ' + item.name"
-                                                :value="item.id"
-                                            >                                            
-                                            </el-option>
-                                        </el-select>
-                                    </div>
-                                </el-form-item>
-                            </el-form>
-                            <el-divider content-position="left">CHI TIẾT QUYỀN</el-divider>
-                            <el-form label-position="right" :inline-message="true" :show-message="false" label-width="120px" >  
-                            <!-- <div v-for="item in listModule" :key="item.id">
+                                    <el-form-item label="Role cha" prop="id_parent">
+                                        <div class="form-group">
+                                            <el-select style="width: 100%" v-model="formData.id_parent" size="large"
+                                                filterable placeholder="Chọn role cha">
+                                                <el-option v-for="item in listCategoryParent" :key="item.id"
+                                                    :label="item.code + ' | ' + item.name" :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                    </el-form-item>
+                                </el-form>
+                                <el-divider content-position="left">CHI TIẾT QUYỀN</el-divider>
+                                <el-form label-position="right" :inline-message="true" :show-message="false"
+                                    label-width="120px">
+                                    <!-- <div v-for="item in listModule" :key="item.id">
                                 <el-form-item >
                                     <el-checkbox-group v-model="formData.ListModule">  
                                     <div style="font-weight: bold;"> 
@@ -63,61 +80,57 @@
                                      </el-checkbox-group>
                                 </el-form-item>
                             </div> -->
-                            <el-form-item >
-                            <div class="row" style="display: flex; flex-wrap: nowrap;">
-                                <el-input
-                                    placeholder="Nhập kí tự cần tìm kiếm..."
-                                    v-model="filterDataCategorys">
-                                </el-input>
-                            </div>
-                            <el-divider></el-divider>
-                            <el-tree
-                                ref="tree"
-                                empty-text="Không tìm thấy !"
-                                :filter-node-method="filterNode"
-                                v-show="listModule"
-                                :data="listModule"
-                                :show-checkbox="false"
-                                node-key="id"                                
-                                default-expand-all
-                                class="tree-role"
-                                :expand-on-click-node="false">
-                                <span class="custom-tree-node" slot-scope="{ node, data }">                                  
-                                    <el-checkbox-group v-model="formData.ListModule">  
-                                    <div style="font-weight: bold;"> 
-                                        <el-checkbox :value="data.code" :label="data.code">
-                                            {{ data.name }}
-                                        </el-checkbox> 
-                                    </div>
-                                    </el-checkbox-group>                                  
-                                    <el-checkbox-group v-model="formData.ListAction">                
-                                        <div v-if="data.action" >                                   
-                                            <el-checkbox v-for="action in data.action" :key="action.id" :label="action.code">  {{ action.name }} </el-checkbox>     
+                                    <el-form-item>
+                                        <div class="row" style="display: flex; flex-wrap: nowrap;">
+                                            <el-input placeholder="Nhập kí tự cần tìm kiếm..."
+                                                v-model="filterDataCategorys">
+                                            </el-input>
                                         </div>
-                                     </el-checkbox-group>
-                                </span>
-                            </el-tree>
-                            </el-form-item>
-                            </el-form>
-                            <!-- /.form-group -->
-                        </div>
-                        <!-- /.col -->
+                                        <el-divider></el-divider>
+                                        <el-tree ref="tree" empty-text="Không tìm thấy !"
+                                            :filter-node-method="filterNode" v-show="listModule" :data="listModule"
+                                            :show-checkbox="false" node-key="id" default-expand-all class="tree-role"
+                                            :expand-on-click-node="false">
+                                            <span class="custom-tree-node" slot-scope="{ node, data }">
+                                                <el-checkbox-group v-model="formData.ListModule">
+                                                    <div style="font-weight: bold;">
+                                                        <el-checkbox :value="data.code" :label="data.code">
+                                                            {{ data.name }}
+                                                        </el-checkbox>
+                                                    </div>
+                                                </el-checkbox-group>
+                                                <el-checkbox-group v-model="formData.ListAction">
+                                                    <div v-if="data.action">
+                                                        <el-checkbox v-for="action in data.action" :key="action.id"
+                                                            :label="action.code"> {{ action.name }} </el-checkbox>
+                                                    </div>
+                                                </el-checkbox-group>
+                                            </span>
+                                        </el-tree>
+                                    </el-form-item>
+                                </el-form>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
 
+                        </div>
+                        <!-- /.row -->
+                        <!-- /.card-body -->
+                        <div class="card-footer" style="display: flex; justify-content: end;">
+                            <el-button v-show="!idUpdate" type="success" @click="create"><i class="el-icon-plus"></i>
+                                Lưu lại
+                            </el-button>
+                            <el-button v-show="idUpdate" type="success" @click="update"><i class="el-icon-edit"></i> Cập
+                                nhật
+                            </el-button>
+                            <el-button @click="$router.push({ name: 'RoleList' })">Đóng</el-button>
+                        </div>
                     </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer" style="display: flex; justify-content: end;">
-                    <el-button v-show="!idUpdate" type="success" @click="create"><i class="el-icon-plus"></i> Lưu lại
-                    </el-button>
-                    <el-button v-show="idUpdate" type="success" @click="update"><i class="el-icon-edit"></i> Cập nhật
-                    </el-button>
-                    <el-button @click="$router.push({name:'RoleList'})">Đóng</el-button>
                 </div>
             </div>
         </div>
+        <!-- End Row -->
     </div>
-
 </template>
 
 <script>
@@ -128,22 +141,22 @@ export default {
     watch: {
         filterDataCategorys(val) {
             this.$refs.tree.filter(val);
-        },     
+        },
     },
     components: {
         VueUploadMultipleImage,
     },
     data() {
         return {
-            checkAll:false,
-            images:[],
+            checkAll: false,
+            images: [],
             idUpdate: '',
             rules: {
                 name: [
-                    {required: true, message: 'Vui lòng không bỏ trống', trigger: 'blur'},
+                    { required: true, message: 'Vui lòng không bỏ trống', trigger: 'blur' },
                 ],
                 path: [
-                    {required: true, message: 'Vui lòng không bỏ trống', trigger: 'change'},
+                    { required: true, message: 'Vui lòng không bỏ trống', trigger: 'change' },
                 ],
             },
             data: [],
@@ -169,15 +182,15 @@ export default {
                 value: 5,
                 label: 'Level 5'
             }],
-            form:new FormData(),
+            form: new FormData(),
             formData: {
-                code:'',
-                name:'',
-                id_parent:'',     
-                ListModule:[],
-                ListAction:[],
+                code: '',
+                name: '',
+                id_parent: '',
+                ListModule: [],
+                ListAction: [],
             },
-            listModule:[],
+            listModule: [],
             isIndeterminate: true
 
         }
@@ -185,40 +198,40 @@ export default {
     mounted() {
         this.getDataParent()
         this.getListModule()
-        if(this.$route.params.id){
-            this.idUpdate=this.$route.params.id
+        if (this.$route.params.id) {
+            this.idUpdate = this.$route.params.id
             this.getDetail(this.$route.params.id)
-        }else{
-            this.genCode()            
+        } else {
+            this.genCode()
         }
     },
-    methods: {        
+    methods: {
         filterNode(value, data) {
             if (!value) return true;
             return data.name.indexOf(value) !== -1;
-        },    
+        },
         getListModule() {
-            let _this = this          
-            ApiService.query('/api/admin/module', {params: {type: 'treeData'}}).then(({data}) => {
+            let _this = this
+            ApiService.query('/api/admin/module', { params: { type: 'treeData' } }).then(({ data }) => {
                 _this.listModule = data['data']
             })
-        },   
+        },
         resetForm(formName) {
-            this.images=[]
+            this.images = []
             this.$refs[formName].resetFields();
         },
-       
+
         async getDataParent(id, update) {
             let _this = this
-            ApiService.query('/api/admin/role', {params: {type: 'data'}}).then(({data}) => {
+            ApiService.query('/api/admin/role', { params: { type: 'data' } }).then(({ data }) => {
                 _this.listCategoryParent = data['data']
-       
+
             })
 
         },
         async genCode() {
             let _this = this
-            ApiService.query('/api/admin/role/gen_code').then(({data}) => {
+            ApiService.query('/api/admin/role/gen_code').then(({ data }) => {
                 _this.formData.code = data
             })
         },
@@ -232,38 +245,38 @@ export default {
                 method: 'get',
                 url: '/api/admin/role/detail/' + id,
             })
-                .then(({data}) => {
+                .then(({ data }) => {
                     if (data['success']) {
                         let res = data['data']
                         _this.formData.code = res['code']
-                        _this.formData.name = res['name']                       
+                        _this.formData.name = res['name']
                         _this.formData.id_parent = res['id_parent']
-                        _this.formData.ListAction = JSON.parse(res['ListAction']) 
-                        _this.formData.ListModule = JSON.parse(res['ListModule'])                        
+                        _this.formData.ListAction = JSON.parse(res['ListAction'])
+                        _this.formData.ListModule = JSON.parse(res['ListModule'])
                     }
                 });
             await _this.getDataParent(idParent, true)
 
         },
-      
+
         appendToFormData() {
             let _this = this
-            _this.form =new FormData()
-            Object.keys(this.formData).forEach(key => {   
-                if(this.formData[key]){
-                    if(key=='ListModule' || key =='ListAction'){
+            _this.form = new FormData()
+            Object.keys(this.formData).forEach(key => {
+                if (this.formData[key]) {
+                    if (key == 'ListModule' || key == 'ListAction') {
                         _this.form.set(key, JSON.stringify(this.formData[key]))
                         return
-                    }else{
+                    } else {
                         _this.form.set(key, this.formData[key])
                     }
-                }             
-               
-            });          
+                }
+
+            });
         },
         create() {
             let _this = this
-            _this.appendToFormData()          
+            _this.appendToFormData()
             this.$refs['formData'].validate((valid) => {
                 if (valid) {
                     axios({
@@ -279,7 +292,7 @@ export default {
                                     type: 'success'
                                 });
                                 _this.resetForm('formData')
-                                _this.$router.push({name:"RoleList"})
+                                _this.$router.push({ name: "RoleList" })
                             } else {
                                 _this.$notify({
                                     title: 'Error',
@@ -311,9 +324,9 @@ export default {
                                     message: response.data['mess'],
                                     type: 'success'
                                 });
-                                _this.resetForm('formData')                               
+                                _this.resetForm('formData')
                                 _this.idUpdate = ''
-                                _this.$router.push({name:"RoleList"})
+                                _this.$router.push({ name: "RoleList" })
                             } else {
                                 _this.$notify({
                                     title: 'Error',
@@ -349,13 +362,13 @@ export default {
 /* .label__form::before{
   content: '+ ';
 } */
-.tree-role .el-tree-node__content{
+.tree-role .el-tree-node__content {
     margin: 10px;
     display: flex;
     align-items: center;
     /* border: 1px dotted rgb(0,0,0,0.2);
     border-radius: 5px;
     margin-bottom: 5px; */
-   
+
 }
 </style>

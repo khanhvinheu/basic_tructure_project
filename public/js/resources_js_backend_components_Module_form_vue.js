@@ -277,12 +277,34 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "row"
+    staticClass: "inner-body"
   }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card card-default"
+    staticClass: "page-header"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, [_c("div", {
+    staticClass: "justify-content-center"
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary my-2 btn-icon-text",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.$router.push({
+          name: "RoleCreate"
+        });
+      }
+    }
+  }, [_c("i", {
+    staticClass: "el-icon-plus"
+  }), _vm._v(" Thêm mới\n                ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row row-sm"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "card custom-card"
+  }, [_c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "row"
@@ -513,7 +535,7 @@ var render = function render() {
       },
       expression: "formData.status"
     }
-  })], 1)])], 1)], 1)])]), _vm._v(" "), _c("div", {
+  })], 1)])], 1)], 1)]), _vm._v(" "), _c("div", {
     staticClass: "card-footer",
     staticStyle: {
       display: "flex",
@@ -534,7 +556,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "el-icon-plus"
-  }), _vm._v(" Lưu lại\n                ")]), _vm._v(" "), _c("el-button", {
+  }), _vm._v("\n                            Lưu lại\n                        ")]), _vm._v(" "), _c("el-button", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -549,7 +571,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "el-icon-edit"
-  }), _vm._v(" Cập nhật\n                ")]), _vm._v(" "), _c("el-button", {
+  }), _vm._v(" Cập\n                            nhật\n                        ")]), _vm._v(" "), _c("el-button", {
     on: {
       click: function click($event) {
         return _vm.$router.push({
@@ -557,29 +579,49 @@ var render = function render() {
         });
       }
     }
-  }, [_vm._v("Đóng")])], 1)])])]);
+  }, [_vm._v("Đóng")])], 1)])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-header",
-    staticStyle: {
-      "background-color": "rgb(0,0,0,0.1)"
-    }
-  }, [_c("h3", {
-    staticClass: "card-title"
-  }, [_vm._v("MODULE DETAIL")]), _vm._v(" "), _c("div", {
-    staticClass: "card-tools"
-  }, [_c("button", {
-    staticClass: "btn btn-tool",
+  return _c("div", [_c("h2", {
+    staticClass: "main-content-title tx-24 mg-b-5"
+  }, [_vm._v("FORM MODULE")]), _vm._v(" "), _c("ol", {
+    staticClass: "breadcrumb"
+  }, [_c("li", {
+    staticClass: "breadcrumb-item"
+  }, [_c("a", {
     attrs: {
-      type: "button",
-      "data-card-widget": "collapse"
+      href: "#"
+    }
+  }, [_vm._v("User")])]), _vm._v(" "), _c("li", {
+    staticClass: "breadcrumb-item active",
+    attrs: {
+      "aria-current": "page"
+    }
+  }, [_vm._v("FormModule")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
     }
   }, [_c("i", {
-    staticClass: "fas fa-minus"
-  })])])]);
+    staticClass: "fe fe-download me-2"
+  }), _vm._v(" Import\n                ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
+    }
+  }, [_c("i", {
+    staticClass: "fe fe-filter me-2"
+  }), _vm._v(" Filter\n                ")]);
 }];
 render._withStripped = true;
 

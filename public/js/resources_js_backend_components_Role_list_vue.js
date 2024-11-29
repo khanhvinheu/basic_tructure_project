@@ -128,17 +128,35 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "row"
+    staticClass: "inner-body"
   }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card card-default"
+    staticClass: "page-header"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, [_c("div", {
+    staticClass: "justify-content-center"
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary my-2 btn-icon-text",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.$router.push({
+          name: "RoleCreate"
+        });
+      }
+    }
+  }, [_c("i", {
+    staticClass: "el-icon-plus"
+  }), _vm._v(" Thêm mới\n                ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row row-sm"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "card custom-card"
+  }, [_c("div", {
     staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "row",
     staticStyle: {
@@ -156,21 +174,7 @@ var render = function render() {
       },
       expression: "filterDataCategorys"
     }
-  }), _vm._v(" "), _c("el-button", {
-    staticClass: "ml-2",
-    attrs: {
-      type: "primary"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.$router.push({
-          name: "RoleCreate"
-        });
-      }
-    }
-  }, [_c("i", {
-    staticClass: "el-icon-plus"
-  }), _vm._v(" Thêm mới\n                            ")])], 1), _vm._v(" "), _c("el-divider"), _vm._v(" "), _c("el-tree", {
+  })], 1), _vm._v(" "), _c("el-divider"), _vm._v(" "), _c("el-tree", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -246,29 +250,49 @@ var render = function render() {
         }), _vm._v(" Xóa")])], 1)], 1)]);
       }
     }])
-  })], 1)])])])])]);
+  })], 1)])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-header",
-    staticStyle: {
-      "background-color": "rgb(0,0,0,0.1)"
-    }
-  }, [_c("h3", {
-    staticClass: "card-title"
-  }, [_vm._v("LIST ROLE")]), _vm._v(" "), _c("div", {
-    staticClass: "card-tools"
-  }, [_c("button", {
-    staticClass: "btn btn-tool",
+  return _c("div", [_c("h2", {
+    staticClass: "main-content-title tx-24 mg-b-5"
+  }, [_vm._v("LIST ROLE")]), _vm._v(" "), _c("ol", {
+    staticClass: "breadcrumb"
+  }, [_c("li", {
+    staticClass: "breadcrumb-item"
+  }, [_c("a", {
     attrs: {
-      type: "button",
-      "data-card-widget": "collapse"
+      href: "#"
+    }
+  }, [_vm._v("User")])]), _vm._v(" "), _c("li", {
+    staticClass: "breadcrumb-item active",
+    attrs: {
+      "aria-current": "page"
+    }
+  }, [_vm._v("ListRole")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
     }
   }, [_c("i", {
-    staticClass: "fas fa-minus"
-  })])])]);
+    staticClass: "fe fe-download me-2"
+  }), _vm._v(" Import\n                ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
+    }
+  }, [_c("i", {
+    staticClass: "fe fe-filter me-2"
+  }), _vm._v(" Filter\n                ")]);
 }];
 render._withStripped = true;
 
@@ -575,7 +599,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".custom-tree-node {\n  flex: 1;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-size: 14px;\n  padding-right: 8px;\n}\n.label__form {\n  font-size: 13px;\n}\n.tree-module .el-tree-node__content{\n  height: 40px;\n  /* border: 1px dotted rgb(0,0,0,0.2);\r\n    border-radius: 5px;\r\n    margin-bottom: 5px; */\n}\n.custom-tree-node{\n  /* border-bottom: 1px solid rgba(53, 191, 7, 0.2); */\n}\n.el-tree-node__content:hover, .el-upload-list__item:hover {\n  background-color:transparent !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".custom-tree-node {\n  flex: 1;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  font-size: 14px;\n  padding-right: 8px;\n}\n.label__form {\n  font-size: 13px;\n}\n.tree-module .el-tree-node__content {\n  height: 40px;\n  /* border: 1px dotted rgb(0,0,0,0.2);\r\n    border-radius: 5px;\r\n    margin-bottom: 5px; */\n}\n.custom-tree-node {\n  /* border-bottom: 1px solid rgba(53, 191, 7, 0.2); */\n}\n.el-tree-node__content:hover,\r\n.el-upload-list__item:hover {\n  background-color: transparent !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

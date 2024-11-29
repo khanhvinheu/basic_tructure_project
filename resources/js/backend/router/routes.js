@@ -3,13 +3,7 @@ import VueRouter from 'vue-router';
 import appConfig from '/config/appConfig'
 Vue.use(VueRouter);
 
-export const constantRouterMap = [
-    {
-        path: '/check-file-in-pdf/:id?',
-        component: () => import('../components/CheckFile/index'),
-        name:'CheckFile',
-        meta:{title:'CheckFile'}
-    },
+export const constantRouterMap = [    
     {
         path: '/login',
         component: () => import('../components/Auth/login'),
@@ -17,17 +11,17 @@ export const constantRouterMap = [
         meta:{title:'Login'}
     },
     {
-        path: '/dashboard',
+        path: '/admin',
         component: ()=> import('../components/index'),
         name: 'admin',
-        redirect: '/index',
+        // redirect: '/admin',
         children: [
             //Dashboard
             {
                 path: '/index',
                 component: () => import('../components/Dashboard/index'),
-                name:'Dashboard',
-                meta:{title:'Home-Admin'}
+                name:'Dashboard-Admin',
+                meta:{title:'Dashboard'}
             },
             //User
             {
@@ -36,6 +30,13 @@ export const constantRouterMap = [
                 name:'UserList',
                 meta:{title:'UserList'}
             },
+            {
+                path: '/list-user2',
+                component: () => import('../components/User/list'),
+                name:'UserList',
+                meta:{title:'UserList'}
+            },
+           
             {
                 path: '/list-user/create',
                 component: () => import('../components/User/form'),
@@ -47,13 +48,7 @@ export const constantRouterMap = [
                 component: () => import('../components/User/form'),
                 name:'UserUpdate',
                 meta:{title:'UserUpdate', type:'Form'}
-            },   
-            {
-                path: '/log',
-                component: () => import('../components/User/blockChain.vue'),
-                name:'Block',
-                meta:{title:'UserUpdate', type:'Form'}
-            },   
+            },               
             //Module
             {
                 path: '/list-module',
@@ -79,8 +74,7 @@ export const constantRouterMap = [
                 path: '/list-role',
                 component: () => import('../components/Role/list'),
                 name:'RoleList',
-                meta:{title:'RoleList'},
-               
+                meta:{title:'RoleList'},               
             },
             {
                 path: '/list-role/create',
@@ -108,40 +102,7 @@ export const constantRouterMap = [
                 component: () => import('../components/Setting/index'),
                 name:'Setting',
                 meta:{title:'Settings'}
-            },
-            //Dot Cap
-            {
-                path: '/danh-sach-dot-cap',
-                component: () => import('../components/DanhSachDotCap/list'),
-                name:'DanhSachDotCap',
-                meta:{title:'DanhSachDotCap'}
-            },
-            //Quan Ly Khoa Hoc
-            {
-                path: '/danh-sach-khoa-hoc',
-                component: () => import('../components/DanhSachKhoaHoc/list'),
-                name:'DanhSachKhoaHoc',
-                meta:{title:'DanhSachKhoaHoc'}
-            },
-              //Quan Ly Cap Chung Chi
-            {
-                path: '/danh-sach-cap-chung-chi',
-                component: () => import('../components/DanhSachCapChungChi/list'),
-                name:'DanhSachCapChungChi',
-                meta:{title:'DanhSachCapChungChi'}
-            },
-            {
-                path: '/danh-sach-cap-chung-chi/create',
-                component: () => import('../components/DanhSachCapChungChi/form'),
-                name:'CapChungChiCreate',
-                meta:{title:'UserCreate',type:'Form'}
-            },
-            {
-                path: '/danh-sach-cap-chung-chi/:id?',
-                component: () => import('../components/DanhSachCapChungChi/form'),
-                name:'CapChungChiUpdate',
-                meta:{title:'UserUpdate', type:'Form'}
-            },   
+            },           
         ]
     },
     {
@@ -181,7 +142,7 @@ export function resetRouter() {
     router.matcher = newRouter.matcher; // reset router
 }
 
-const DEFAULT_TITLE ='ECDSA';
+const DEFAULT_TITLE ='KV';
 router.afterEach((to,from) => {  
     document.title =(DEFAULT_TITLE + ' - ' + to.meta.title )|| DEFAULT_TITLE + ' - '+(to.name);
 });

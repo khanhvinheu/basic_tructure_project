@@ -510,12 +510,33 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "row"
+    staticClass: "inner-body"
   }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card card-default"
+    staticClass: "page-header"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, [_c("div", {
+    staticClass: "justify-content-center"
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary my-2 btn-icon-text",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        _vm.outerVisible = true;
+        _vm.idUpdate = "";
+      }
+    }
+  }, [_c("i", {
+    staticClass: "el-icon-plus"
+  }), _vm._v(" Thêm mới\n                ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row row-sm"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "card custom-card"
+  }, [_c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "row"
@@ -556,7 +577,7 @@ var render = function render() {
           }
         }, [_c("i", {
           staticClass: "el-icon-search"
-        }), _vm._v(" Tìm\n                                        kiếm\n                                    ")])];
+        }), _vm._v("\n                                            Tìm\n                                            kiếm\n                                        ")])];
       },
       proxy: true
     }]),
@@ -567,20 +588,7 @@ var render = function render() {
       },
       expression: "textSearch"
     }
-  }), _vm._v(" "), _c("el-button", {
-    staticClass: "ml-2",
-    attrs: {
-      type: "primary"
-    },
-    on: {
-      click: function click($event) {
-        _vm.outerVisible = true;
-        _vm.idUpdate = "";
-      }
-    }
-  }, [_c("i", {
-    staticClass: "el-icon-plus"
-  }), _vm._v(" Thêm mới\n                            ")])], 1), _vm._v(" "), _c("el-table", {
+  })], 1), _vm._v(" "), _c("el-table", {
     directives: [{
       name: "loading",
       rawName: "v-loading",
@@ -623,7 +631,7 @@ var render = function render() {
     scopedSlots: _vm._u([{
       key: "default",
       fn: function fn(scope) {
-        return [_vm._v("\n                                    " + _vm._s(_vm._f("formatDate")(scope.row.created_at)) + "\n                                ")];
+        return [_vm._v("\n                                        " + _vm._s(_vm._f("formatDate")(scope.row.created_at)) + "\n                                    ")];
       }
     }])
   }), _vm._v(" "), _c("el-table-column", {
@@ -643,7 +651,7 @@ var render = function render() {
               return _vm.update(scope.row);
             }
           }
-        }, [_vm._v("Cập\n                                        nhật\n                                    ")]), _vm._v(" "), _c("el-popconfirm", {
+        }, [_vm._v("Cập\n                                            nhật\n                                        ")]), _vm._v(" "), _c("el-popconfirm", {
           attrs: {
             "confirm-button-text": "Xóa",
             "cancel-button-text": "Không",
@@ -663,7 +671,7 @@ var render = function render() {
           slot: "reference"
         }, [_c("i", {
           staticClass: "el-icon-delete"
-        }), _vm._v(" Xóa\n                                        ")])], 1)];
+        }), _vm._v(" Xóa\n                                            ")])], 1)];
       }
     }])
   }), _vm._v(" "), _c("template", {
@@ -698,9 +706,7 @@ var render = function render() {
         _vm.currentPage = $event;
       }
     }
-  })], 1)])]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer"
-  })])]), _vm._v(" "), _c("el-dialog", {
+  })], 1)])])])]), _vm._v(" "), _c("el-dialog", {
     attrs: {
       visible: _vm.outerVisible
     },
@@ -717,29 +723,49 @@ var render = function render() {
     on: {
       success: _vm.success
     }
-  })], 1)], 1);
+  })], 1)], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-header",
-    staticStyle: {
-      "background-color": "rgb(0,0,0,0.1)"
-    }
-  }, [_c("h3", {
-    staticClass: "card-title"
-  }, [_vm._v("LIST ACTION")]), _vm._v(" "), _c("div", {
-    staticClass: "card-tools"
-  }, [_c("button", {
-    staticClass: "btn btn-tool",
+  return _c("div", [_c("h2", {
+    staticClass: "main-content-title tx-24 mg-b-5"
+  }, [_vm._v("LIST ACTION")]), _vm._v(" "), _c("ol", {
+    staticClass: "breadcrumb"
+  }, [_c("li", {
+    staticClass: "breadcrumb-item"
+  }, [_c("a", {
     attrs: {
-      type: "button",
-      "data-card-widget": "collapse"
+      href: "#"
+    }
+  }, [_vm._v("User")])]), _vm._v(" "), _c("li", {
+    staticClass: "breadcrumb-item active",
+    attrs: {
+      "aria-current": "page"
+    }
+  }, [_vm._v("ListAction")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
     }
   }, [_c("i", {
-    staticClass: "fas fa-minus"
-  })])])]);
+    staticClass: "fe fe-download me-2"
+  }), _vm._v(" Import\n                ")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-white btn-icon-text my-2 me-2",
+    attrs: {
+      type: "button"
+    }
+  }, [_c("i", {
+    staticClass: "fe fe-filter me-2"
+  }), _vm._v(" Filter\n                ")]);
 }];
 render._withStripped = true;
 
@@ -1046,7 +1072,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".el-table .warning-row {\n  background: oldlace;\n}\n.el-table .success-row {\n  background: #f0f9eb;\n}\n.color-item{\n  height: 20px;\n  width: 40px;\n  border-radius: 6px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".el-table .warning-row {\n  background: oldlace;\n}\n.el-table .success-row {\n  background: #f0f9eb;\n}\n.color-item {\n  height: 20px;\n  width: 40px;\n  border-radius: 6px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

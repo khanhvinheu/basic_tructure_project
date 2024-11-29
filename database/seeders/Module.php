@@ -124,6 +124,18 @@ class Module extends Seeder
                 "type"=>null,
                 "status"=>'1',
             ],
+            [
+                "code"=>'MD0010',
+                "name"=>'Dashboard',
+                "id_parent"=>null,
+                "index"=>null,
+                "alias"=>'/index/*',
+                "class"=>'#',
+                "icon"=>null,
+                "path"=>'/index',
+                "type"=>null,
+                "status"=>'1',
+            ],
 
         ];
          // Disable foreign key checks to prevent issues during truncation

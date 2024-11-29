@@ -16,7 +16,7 @@
                     <ul class="menu-nav nav">
                         <li class="nav-header"><span class="nav-label">Dashboard</span></li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index">
+                            <a class="nav-link" href="/admin/index">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="ti-home sidemenu-icon menu-icon "></i>
@@ -35,9 +35,9 @@
                             </a>
                             <ul class="nav-sub">
                                 <li class="side-menu-label1"><a href="javascript:void(0)">Crypto Currencies</a></li>
-                                <li class="nav-sub-item"> <a class="nav-sub-link" href="/list-user">List user</a></li>
-                                <li class="nav-sub-item"><a class="nav-sub-link" href="/list-role">List role</a></li>
-                                <li class="nav-sub-item"><a class="nav-sub-link" href="/list-module">List module</a></li>                         
+                                <li class="nav-sub-item"> <a class="nav-sub-link" v-bind:class="{'active':($route.name=='UserList')}" href="/admin/list-user">List user</a></li>
+                                <li class="nav-sub-item"><a class="nav-sub-link" v-bind:class="{'active':($route.name=='RoleList')}" href="/admin/list-role">List role</a></li>
+                                <li class="nav-sub-item"><a class="nav-sub-link" v-bind:class="{'active':($route.name=='ModuleList')}" href="/admin/list-module">List module</a></li>                         
                             </ul>
                         </li>                    
                         <li class="nav-header"><span class="nav-label">Setting system</span></li>
