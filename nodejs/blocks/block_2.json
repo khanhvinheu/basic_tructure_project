@@ -1,0 +1,10 @@
+{
+  "index": 2,
+  "timestamp": "2024-10-17T06:57:26.209Z",
+  "data": {
+    "year": 2024
+  },
+  "previousHash": "bbaace56a961f421fbf3e30f18892423e043448c47729c23839744a63fa0912e",
+  "signature": "3045022100fceaaca0aa74adca6bbaefc2c11f98c95bcee76c0dee32b81a5d10fe9d1f32f202202611ab540df071cba619db05fedb4b4e398183c3290b9403dfa5f2291d0e6f8a",
+  "hash": "b69480bbf9ed49b75286e0b0a4e5aea3f6249f259f4b360a67b0e6a18d8058a7"
+}
